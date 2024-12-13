@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 창</title>
+
+  <!-- 외부 css적용 -->
+  <link rel="stylesheet" href="/css/index.css" />
+  <!-- 구글 폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <!-- Left Section -->
+  <div class="left-section">
+    <img src="/img/main.png"class="icon">
+  </div>
+
+  <!-- Right Section -->
+  <div class="right-section">
+    <h1 class="title">TokTok</h1>
+    <form class="login-form">
+      <input type="text" placeholder="아이디를 입력해주세요." class="input">
+      <input type="password" placeholder="패스워드를 입력해주세요." class="input">
+      <button type="submit" class="login-button">로그인</button>
+    </form>
+    <p class="signup-text">
+      계정이 없으신가요? <a th:href="@{join}" class="signup-link">가입하기</a>
+    </p>
+  </div>
+</div>
+</body>
+</html>
