@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>메인 페이지</title>
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <!-- 외부css링크 -->
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+<!-- 상단 메뉴 -->
+<header class="header">
+    <img src="/img/main.png" alt="Logo" class="logo">
+    <nav class="nav">
+        <a href="#"><img src="/img/head_look.png" alt="Search" class="icon"></a>
+        <a href="#"><img src="/img/head_message.png" alt="Message" class="icon"></a>
+        <a href="#"><img src="/img/head_board.png" alt="Board" class="icon"></a>
+        <a href="#"><img src="/img/head_user.png" alt="Profile" class="icon"></a>
+    </nav>
+    <a th:href="@{/logout}" class="logout-button">로그아웃</a>
+</header>
+
+<!-- 게시물 섹션 -->
+<main class="post-container">
+    <div class="post">
+        <div class="post-header">
+            <img src="/img/user.png" alt="User Icon" class="user-icon">
+            <span class="username" th:text="${username}">사용자 이름</span>
+        </div>
+        <img th:src="${postImage}" alt="Post Image" class="post-image">
+        <div class="post-content">
+            <span>❤️</span>
+            <span>💬</span>
+            <p th:text="${postContent}">내 고양이 어때?????</p>
+        </div>
+    </div>
+</main>
+</body>
+</html>

@@ -19,13 +19,13 @@
   <!-- Right Section -->
   <div class="right-section">
     <h1 class="title">TokTok</h1>
-    <form class="login-form">
-      <input type="text" placeholder="아이디를 입력해주세요." class="input">
-      <input type="password" placeholder="패스워드를 입력해주세요." class="input">
+    <form class="login-form" method="post" th:action="@{/login}" th:object="${userDTO}">
+      <input type="text" placeholder="아이디를 입력해주세요." th:field="*{id}" class="input">
+      <input type="password" placeholder="패스워드를 입력해주세요." th:field="*{password}" class="input">
       <button type="submit" class="login-button">로그인</button>
     </form>
     <p class="signup-text">
-      계정이 없으신가요? <a th:href="@{join}" class="signup-link">가입하기</a>
+      계정이 없으신가요? <a th:href="@{/join}" class="signup-link">가입하기</a>
     </p>
   </div>
 </div>

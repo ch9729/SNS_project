@@ -16,9 +16,17 @@ public interface UserMapper {
 
     // userNum을 통해 1명에 대한 회원 조회
     @Select("SELECT * FROM user userNum=#{userNum}")
-    public User getUserByNum(Integer userNum);
+    public User getUserByNum(Long userNum);
+
+    //ID로 사용자 조회
+    @Select("SELECT * FROM user WHERE id = #{id}")
+    User findById(String id);
 
     // 회원 추가
-    @Insert("INSERT INTO user VALUES (#{id}, #{passoword}, #{name}, #{alias})")
-    int insertUser(String id, String passoword, String name, String alias);
+    @Insert("INSERT INTO user(id, password, name, alias) VALUES (#{id}, #{password}, #{name}, #{alias})")
+    int insertUser(String id, String password, String name, String alias);
+
+    // 로그인
+    @Select("SELECT count(*) FROM user WHERE id = #{id} AND password = #{password}")
+    int selectUser(String id, String password);
 }

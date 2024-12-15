@@ -15,11 +15,30 @@
         <div class="signup-box">
             <h1 class="title">TokTok</h1>
             <p class="subtitle">친구들과 소통하며 지내요</p>
-            <form class="signup-form">
-                <input type="text" placeholder="아이디를 입력해주세요." class="input">
-                <input type="password" placeholder="비밀번호를 입력해주세요." class="input">
-                <input type="text" placeholder="성명" class="input">
-                <input type="text" placeholder="사용자 이름" class="input">
+            <form class="signup-form" method="post" th:action="@{/join}" th:object="${userDTO}">
+<!--                <input type="text" name="id" placeholder="아이디를 입력해주세요." class="input" required>-->
+<!--                <input type="password" name="password" placeholder="비밀번호를 입력해주세요." class="input" required>-->
+<!--                <input type="text"  name="name" placeholder="성명" class="input" required>-->
+<!--                <input type="text" name="alias" placeholder="사용자 이름" class="input" required>-->
+                <div>
+                    <input type="text" placeholder="아이디" class="input" th:field="*{id}">
+                    <div class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>
+                </div>
+
+                <div>
+                    <input type="password" placeholder="비밀번호" class="input" th:field="*{password}">
+                    <div class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="이름" class="input" th:field="*{name}">
+                    <div class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></div>
+                </div>
+
+                <div>
+                    <input type="text" placeholder="사용자명" class="input" th:field="*{alias}">
+                    <div class="error" th:if="${#fields.hasErrors('alias')}" th:errors="*{alias}"></div>
+                </div>
                 <button type="submit" class="signup-button">가입</button>
             </form>
         </div>
