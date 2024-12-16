@@ -37,9 +37,12 @@ public class UserService {
     }
 
     //회원가입
-    public void createUser(UserDTO userDTO) {
+    public void createUser(UserDTO userDTO, boolean isEdit) {
         User user = toEntity(userDTO);
-
+        if(isEdit) {
+            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+            uMapper.updateUser(user.getPassword(),user.getName(),user.getAlias());
+        }
         uMapper.insertUser(user.getId(),user.getPassword(),user.getName(),user.getAlias());
     }
 
@@ -50,5 +53,10 @@ public class UserService {
             throw new RuntimeException("사용자를 찾을수 없습니다.");
         }
         return passwordEncoder.matches(userDTO.getPassword(), user.getPassword());
+    }
+
+    //회원 정보 가져오기
+    public User getUserById(String id) {
+        return uMapper.findById(id);
     }
 }

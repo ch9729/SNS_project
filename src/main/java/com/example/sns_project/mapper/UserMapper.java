@@ -4,6 +4,7 @@ import com.example.sns_project.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -29,4 +30,8 @@ public interface UserMapper {
     // 로그인
     @Select("SELECT count(*) FROM user WHERE id = #{id} AND password = #{password}")
     int selectUser(String id, String password);
+
+    // 회원수정
+    @Update("UPDATE user SET name= #{name} , password= #{password}, alias= ${alias}")
+    int updateUser(String password, String name, String alias);
 }

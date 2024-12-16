@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
+
 @Controller
 @RequiredArgsConstructor
 public class UserController {
@@ -28,27 +30,24 @@ public class UserController {
     
     //계정생성 확인 눌렀을시 페이지 이동
     @GetMapping("/join")
-    public String join(UserDTO userDTO) {
+    public String join(Principal principal, Model model) {
+        UserDTO userDTO = new UserDTO();
+        if(principal != null) {
+            String userId = principal.getName();
+            User userById = uService.getUserById(userId);
+
+        }
+        model.addAttribute("userDTO", userDTO);
+        model.addAttribute("isEdit", principal != null);
         return "join";
     }
 
     // 회원가입 (DTO로 입력을 받아 Entity로 변환)
     @PostMapping("/join")
-    public String join(@Valid @ModelAttribute UserDTO userDTO,
-                       BindingResult result,
-                       Model model) {
-        if (result.hasErrors()) {
-            return "join";
-        }
-        try {
-            uService.createUser(userDTO);
-            return "index";
-        } catch ( Exception e ) {
-            e.printStackTrace();
-            model.addAttribute("error", e.getMessage());
-            return "join";
-        }
-
+    public String join(@ModelAttribute("userDTO")UserDTO userDTO, Principal principal , Model model) {
+        boolean isEdit = principal != null;
+        uService.createUser(userDTO, isEdit);
+        return "redirect:/myPage";
     }
 
     @GetMapping("/main")
@@ -56,16 +55,18 @@ public class UserController {
         return "main";
     }
 
-//    @PostMapping("/main")
-//    public String main(UserDTO userDTO,
-//                       Model model) {
-//        boolean loginUser = uService.loginUser(userDTO);
-//
-//        if(loginUser) {
-//            return "redirect:/main";  //로그인 성공시
-//        } else {
-//            model.addAttribute("error","아이디 혹은 비밀번호가 일치하지 않습니다.");
-//            return "index";
-//        }
-//    }
+    @GetMapping("/myPage")
+    public String myPage(Principal principal, Model model) {
+        String user = principal.getName();
+        User users = uService.getUserById(user);
+
+        model.addAttribute("name", users.getName());
+        model.addAttribute("alias", users.getAlias());
+        return "myPage";
+    }
+
+    @GetMapping("/upload")
+    public String upload() {
+        return "upload";
+    }
 }

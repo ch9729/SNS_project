@@ -9,7 +9,7 @@ body {
     background-color: #f9f9f9;
 }
 
-/* Header */
+/* 헤더부분 */
 .header {
     display: flex;
     justify-content: space-between;
@@ -36,6 +36,8 @@ body {
     text-decoration: none;
     color: #333;
 }
+
+
 
 /* Post Container */
 .post-container {

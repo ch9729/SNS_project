@@ -16,10 +16,7 @@
             <h1 class="title">TokTok</h1>
             <p class="subtitle">친구들과 소통하며 지내요</p>
             <form class="signup-form" method="post" th:action="@{/join}" th:object="${userDTO}">
-<!--                <input type="text" name="id" placeholder="아이디를 입력해주세요." class="input" required>-->
-<!--                <input type="password" name="password" placeholder="비밀번호를 입력해주세요." class="input" required>-->
-<!--                <input type="text"  name="name" placeholder="성명" class="input" required>-->
-<!--                <input type="text" name="alias" placeholder="사용자 이름" class="input" required>-->
+
                 <div>
                     <input type="text" placeholder="아이디" class="input" th:field="*{id}">
                     <div class="error" th:if="${#fields.hasErrors('id')}" th:errors="*{id}"></div>

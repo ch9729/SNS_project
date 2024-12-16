@@ -20,6 +20,7 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((auth) -> auth
                         .requestMatchers("/","/join", "/css/**", "/img/**", "/js/**").permitAll()
+                        .requestMatchers("/myPage").authenticated() //인증된 사용자만 접근가능
                         .anyRequest().authenticated()
                 )
                 .formLogin(login -> login
@@ -27,6 +28,8 @@ public class SecurityConfig {
                         .loginProcessingUrl("/login")   //로그인 처리 URL
                         .defaultSuccessUrl("/main",true)    // 로그인 성공 시 이동URL
                         .failureUrl("/?error=true") // 로그인 실패 시 이동할 URL
+                        .usernameParameter("id")   // 시큐리티는 기본적으로 username을 받는데 해당 찾는것을 아아디로 받을시 입력이 필수*****
+                        .passwordParameter("password")  // 패스워드도 같이 입력하는것이 좋다.
                         .permitAll())
                 .logout(logout -> logout
                         .logoutUrl("/logout") // 로그아웃 처리 URL

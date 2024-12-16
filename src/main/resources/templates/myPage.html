@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지</title>
+    <!-- 구글폰트 -->
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <!-- 외부css링크 -->
+    <link rel="stylesheet" href="/css/myPage.css">
+</head>
+<body>
+<header class="header">
+    <a th:href="@{/main}"><img src="/img/main.png" alt="Logo" class="logo"></a>
+    <nav class="nav">
+        <a href="#"><img src="/img/head_look.png" alt="Search" class="icon"></a>
+        <a href="#"><img src="/img/head_message.png" alt="Message" class="icon"></a>
+        <a href="#"><img src="/img/head_board.png" alt="Board" class="icon"></a>
+        <a th:href="@{/myPage}"><img src="/img/head_user.png" alt="Profile" class="icon"></a>
+    </nav>
+    <a th:href="@{/logout}" class="logout-button">로그아웃</a>
+</header>
+
+<main class="profile-section">
+    <div class="profile-info">
+        <div class="profile-image">
+            <img src="img/user.png" alt="프로필 사진">
+        </div>
+        <div class="profile-details">
+            <h2><span th:text="${alias}"></span></h2>
+            <p><span th:text="${name}"></span>님</p>
+        </div>
+        <div class="follow-section">
+
+            <span class="followers">팔로우 <strong>2</strong></span>
+        </div>
+        <button class="add-btn"><a th:href="@{/upload}"></a>추가</button>
+        <div class="options"><a th:href="@{/join}"><img src="img/plus.png"></a></div>
+    </div>
+
+    <div class="gallery">
+        <div class="photo">
+            <img src="cat_image.png" alt="고양이 사진">
+            <span class="delete">×</span>
+        </div>
+        <div class="photo">
+            <img src="cat_image.png" alt="고양이 사진">
+            <span class="delete">×</span>
+        </div>
+        <div class="photo">
+            <img src="cat_image.png" alt="고양이 사진">
+            <span class="delete">×</span>
+        </div>
+    </div>
+</main>
+</body>
+</html>
