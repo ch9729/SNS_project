@@ -1,10 +1,7 @@
 package com.example.sns_project.mapper;
 
 import com.example.sns_project.entity.User;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 
@@ -16,7 +13,7 @@ public interface UserMapper {
     public List<User> selectUsers();
 
     // userNum을 통해 1명에 대한 회원 조회
-    @Select("SELECT * FROM user userNum=#{userNum}")
+    @Select("SELECT * FROM user WHERE userNum=#{userNum}")
     public User getUserByNum(Long userNum);
 
     //ID로 사용자 조회
@@ -32,6 +29,10 @@ public interface UserMapper {
     int selectUser(String id, String password);
 
     // 회원수정
-    @Update("UPDATE user SET name= #{name} , password= #{password}, alias= ${alias}")
+    @Update("UPDATE user SET name= #{name} , password= #{password}, alias= #{alias}")
     int updateUser(String password, String name, String alias);
+
+    // 회원삭제
+    @Delete("DELETE FROM user WHERE id = #{id}")
+    int deleteUser(String id);
 }

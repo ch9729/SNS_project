@@ -39,10 +39,7 @@ public class UserService {
     //회원가입
     public void createUser(UserDTO userDTO, boolean isEdit) {
         User user = toEntity(userDTO);
-        if(isEdit) {
-            user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-            uMapper.updateUser(user.getPassword(),user.getName(),user.getAlias());
-        }
+
         uMapper.insertUser(user.getId(),user.getPassword(),user.getName(),user.getAlias());
     }
 
@@ -58,5 +55,16 @@ public class UserService {
     //회원 정보 가져오기
     public User getUserById(String id) {
         return uMapper.findById(id);
+    }
+
+    // 회원 수정
+    public void updateUser(UserDTO userDTO) {
+        User user = toEntity(userDTO);
+        uMapper.updateUser(user.getPassword(),user.getName(),user.getAlias());
+    }
+
+    // 회원 탈퇴
+    public void deleteUser(String id) {
+        uMapper.deleteUser(id);
     }
 }

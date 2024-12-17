@@ -27,7 +27,7 @@ public class UserController {
         model.addAttribute("userDTO", new UserDTO());
         return "index";
     }
-    
+
     //계정생성 확인 눌렀을시 페이지 이동
     @GetMapping("/join")
     public String join(Principal principal, Model model) {
@@ -65,8 +65,32 @@ public class UserController {
         return "myPage";
     }
 
-    @GetMapping("/upload")
-    public String upload() {
-        return "upload";
+    @GetMapping("/edit")
+    public String edit(Principal principal, Model model) {
+        String user = principal.getName();
+        User users = uService.getUserById(user);
+
+        model.addAttribute("userDTO", users);
+        return "edit";
+    }
+
+    @PostMapping("/edit")
+    public String edit(@Valid @ModelAttribute("userDTO") UserDTO userDTO,
+                       BindingResult bindingResult,
+                       Principal principal) {
+        if(bindingResult.hasErrors()) {
+            return "edit";
+        }
+        userDTO.setId(principal.getName());
+        uService.updateUser(userDTO);
+
+        return "redirect:/myPage";
+    }
+
+    @PostMapping("/delete")
+    public String delete(Principal principal) {
+        String user = principal.getName();
+        uService.deleteUser(user);
+        return "redirect:/logout";
     }
 }

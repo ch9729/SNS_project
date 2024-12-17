@@ -11,7 +11,9 @@
 </head>
 <body>
 <header class="header">
-    <a th:href="@{/main}"><img src="/img/main.png" alt="Logo" class="logo"></a>
+    <a th:href="@{/main}">
+        <img src="/img/main.png" alt="Logo" class="logo">
+    </a>
     <nav class="nav">
         <a href="#"><img src="/img/head_look.png" alt="Search" class="icon"></a>
         <a href="#"><img src="/img/head_message.png" alt="Message" class="icon"></a>
@@ -24,7 +26,7 @@
 <main class="profile-section">
     <div class="profile-info">
         <div class="profile-image">
-            <img src="img/user.png" alt="프로필 사진">
+            <img th:src="${profileImage}" alt="프로필 사진">
         </div>
         <div class="profile-details">
             <h2><span th:text="${alias}"></span></h2>
@@ -34,8 +36,12 @@
 
             <span class="followers">팔로우 <strong>2</strong></span>
         </div>
-        <button class="add-btn"><a th:href="@{/upload}"></a>추가</button>
-        <div class="options"><a th:href="@{/join}"><img src="img/plus.png"></a></div>
+        <button class="add-btn">
+            <a th:href="@{/upload}"></a>추가
+        </button>
+        <div class="options">
+            <a th:href="@{/edit}"><img src="img/plus.png"></a>
+        </div>
     </div>
 
     <div class="gallery">

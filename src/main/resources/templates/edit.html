@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원정보 수정</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/edit.css">
+</head>
+<body>
+<div class="signup-container">
+    <div class="signup-box">
+        <h1 class="title">TokTok</h1>
+        <p class="subtitle">회원 정보를 수정하세요</p>
+        <form class="signup-form" method="post" th:action="@{/edit}" th:object="${userDTO}">
+
+            <div>
+                <input type="password" placeholder="새 비밀번호" class="input" th:field="*{password}">
+            </div>
+
+            <div>
+                <input type="text" placeholder="이름" class="input" th:field="*{name}">
+            </div>
+
+            <div>
+                <input type="text" placeholder="사용자명" class="input" th:field="*{alias}">
+            </div>
+            <div>
+                <input type="file" name="profile" accept="image/*">
+            </div>
+
+            <div class="button-group">
+                <form class="signup-form" method="post" th:action="@{/edit}" th:object="${userDTO}">
+                    <button type="submit" class="small-button update-button">수정</button>
+                </form>
+                <form th:action="@{/delete}" method="post" style="display: inline;">
+                    <button type="submit" class="small-button delete-button">탈퇴</button>
+                </form>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
