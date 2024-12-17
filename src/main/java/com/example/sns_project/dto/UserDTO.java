@@ -14,7 +14,7 @@ public class UserDTO {
     @NotBlank(message = "아이디를 입력해주세요.")
     private String id;
 
-    @NotBlank(message = "패스워드를 입력해주세요.")
+    @Pattern(regexp = ".*", message = "비밀번호를 입력해주세요.")
     private String password;
 
     @NotBlank(message = "이름을 입력해주세요.")
@@ -23,4 +23,8 @@ public class UserDTO {
     @Pattern(regexp = "^[A-Za-z0-9]+$", message = "영어및 숫자만 입력 가능합니다.")
     @NotBlank(message = "사용자명을 입력해주세요.")
     private String alias;   //사용자명
+
+    private String profile;
+    
+
 }

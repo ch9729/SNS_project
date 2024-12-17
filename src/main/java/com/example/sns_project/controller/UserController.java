@@ -4,16 +4,26 @@ import com.example.sns_project.dto.UserDTO;
 import com.example.sns_project.entity.User;
 import com.example.sns_project.mapper.UserMapper;
 import com.example.sns_project.service.UserService;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.Principal;
 import java.util.Collections;
+import java.nio.file.StandardCopyOption;
+import java.util.Date;
 import java.util.List;
+
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 
 @Controller
 @RequiredArgsConstructor
@@ -57,11 +67,11 @@ public class UserController {
 
     @GetMapping("/myPage")
     public String myPage(Principal principal, Model model) {
-        String user = principal.getName();
-        User users = uService.getUserById(user);
+        String userId = principal.getName();
 
-        model.addAttribute("name", users.getName());
-        model.addAttribute("alias", users.getAlias());
+        User user = uService.getUserById(userId);
+
+        model.addAttribute("user", user);
         return "myPage";
     }
 
@@ -71,19 +81,25 @@ public class UserController {
         User users = uService.getUserById(user);
 
         model.addAttribute("userDTO", users);
+
         return "edit";
     }
 
     @PostMapping("/edit")
     public String edit(@Valid @ModelAttribute("userDTO") UserDTO userDTO,
+                       MultipartFile file,
                        BindingResult bindingResult,
                        Principal principal) {
         if(bindingResult.hasErrors()) {
             System.out.println("에러");
             return "edit";
         }
+
         userDTO.setId(principal.getName());
-        uService.updateUser(userDTO);
+
+
+
+        uService.updateUser(userDTO, file);
 
         return "redirect:/myPage";
     }
@@ -110,9 +126,5 @@ public class UserController {
         return "search";
     }
 
-    // 다른 회원 페이지
-//    @GetMapping("/user/{userNum}")
-//    public String userPage(@PathVariable("userNum") Long userNum, Model model) {
-//    uService.ge
-//    }
+
 }

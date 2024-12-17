@@ -22,16 +22,18 @@ public interface UserMapper {
     User findById(String id);
 
     // 회원 추가
-    @Insert("INSERT INTO user(id, password, name, alias) VALUES (#{id}, #{password}, #{name}, #{alias})")
-    int insertUser(String id, String password, String name, String alias);
+    @Insert("INSERT INTO user(id, password, name, alias, profile) VALUES (#{id}, #{password}, #{name}, #{alias}, #{profile})")
+    int insertUser(String id, String password, String name, String alias, String profile);
 
     // 로그인
     @Select("SELECT count(*) FROM user WHERE id = #{id} AND password = #{password}")
     int selectUser(String id, String password);
 
     // 회원수정
-    @Update("UPDATE user SET name= #{name} , password= #{password}, alias= #{alias}")
-    int updateUser(String password, String name, String alias);
+    //Update({"<script>", "UPDATE user", "<set>", "<if test='password != null'> password = #{password}, </if>", "<if test='name != null'> name = #{name}, </if>", "<if test='alias != null'> alias = #{alias}, </if>", "<if test='profile != null'> profile = #{profile}, </if>", "</set>", "WHERE id = #{id}", "</script>"})
+    //int updateUser(@Param("id") String id, @Param("password") String password, @Param("name") String name, @Param("alias") String alias, @Param("profile") String profile);
+    @Update({"<script>", "UPDATE user", "<set>", "<if test='password != null'> password = #{password}, </if>", "<if test='name != null'> name = #{name}, </if>", "<if test='alias != null'> alias = #{alias}, </if>", "<if test='profile != null'> profile = #{profile}, </if>", "</set>", "WHERE id = #{id}", "</script>"})
+    int updateUser(@Param("id") String id, @Param("password") String password, @Param("name") String name, @Param("alias") String alias, @Param("profile") String profile);
 
     // 회원삭제
     @Delete("DELETE FROM user WHERE id = #{id}")
@@ -41,5 +43,5 @@ public interface UserMapper {
     @Select("SELECT * FROM user WHERE name LIKE CONCAT('%',#{query},'%') OR alias LIKE CONCAT('%',#{query},'%')")
     List<User> selectUserLike(@Param("query") String query);
 
-    //Num값받아오기
+
 }

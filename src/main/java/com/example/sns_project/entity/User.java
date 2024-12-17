@@ -19,4 +19,7 @@ public class User {
     
     // 사용자명
     private String alias;
+
+    // 프로필
+    private String profile = "profile/user.png";
 }

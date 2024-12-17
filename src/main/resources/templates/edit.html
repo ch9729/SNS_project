@@ -13,10 +13,10 @@
     <div class="signup-box">
         <h1 class="title">TokTok</h1>
         <p class="subtitle">회원 정보를 수정하세요</p>
-        <form class="signup-form" method="post" th:action="@{/edit}" th:object="${userDTO}">
-            <input type="hidden" placeholder="새 비밀번호" class="input" th:field="*{id}">
+        <form class="signup-form" method="post" th:action="@{/edit}" th:object="${userDTO}" enctype="multipart/form-data">
+            <input type="hidden" class="input" th:field="*{id}">
             <div>
-                <input type="hidden" placeholder="새 비밀번호" class="input" th:field="*{password}">
+                <input type="password" placeholder="새 비밀번호 (입력 시 변경됩니다)" class="input" th:field="*{password}">
             </div>
 
             <div>
@@ -27,17 +27,17 @@
                 <input type="text" placeholder="사용자명" class="input" th:field="*{alias}">
             </div>
             <div>
-                <input type="file" name="profile" accept="image/*">
+                <input type="file" name="file" accept="image/*">
             </div>
 
             <div class="button-group">
 
                     <button type="submit" class="small-button update-button" onclick="return confirm('정말로 수정하시겠습니까?')">수정</button>
 
-                <form th:action="@{/delete}" method="post" style="display: inline;">
-                    <button type="submit" class="small-button delete-button" onclick="return confirm('정말로 탈퇴하시겠습니까?')">탈퇴</button>
-                </form>
             </div>
+        </form>
+        <form th:action="@{/delete}" method="post" style="display: inline;">
+            <button type="submit" class="small-button delete-button" onclick="return confirm('정말로 탈퇴하시겠습니까?')">탈퇴</button>
         </form>
     </div>
 </div>

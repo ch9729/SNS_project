@@ -19,7 +19,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests((auth) -> auth
-                        .requestMatchers("/","/join", "/css/**", "/img/**", "/js/**").permitAll()
+                        .requestMatchers("/","/join", "/css/**", "/img/**","/profile/**", "/js/**").permitAll()
                         .requestMatchers("/myPage").authenticated() //인증된 사용자만 접근가능
                         .anyRequest().authenticated()
                 )
