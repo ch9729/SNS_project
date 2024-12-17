@@ -1,0 +1,147 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+.element {
+    position: relative;
+    width: 1448px;
+    height: 966px;
+    background-color: #ffffff;
+    border-radius: 50px;
+    overflow: hidden;
+}
+
+.element .overlap-group {
+    position: absolute;
+    width: 652px;
+    height: 486px;
+    top: 250px;
+    left: 398px;
+}
+
+.element .shopaholics-wavy {
+    position: absolute;
+    width: 652px;
+    height: 466px;
+    top: 0;
+    left: 0;
+}
+
+.element .group {
+    position: absolute;
+    width: 499px;
+    height: 457px;
+    top: 29px;
+    left: 69px;
+}
+
+.element .stroke {
+    position: absolute;
+    width: 261px;
+    height: 221px;
+    top: 236px;
+    left: 158px;
+}
+
+.element .img {
+    position: absolute;
+    width: 60px;
+    height: 55px;
+    top: 268px;
+    left: 0;
+}
+
+.element .stroke-2 {
+    position: absolute;
+    width: 271px;
+    height: 218px;
+    top: 0;
+    left: 16px;
+}
+
+.element .stroke-3 {
+    position: absolute;
+    width: 116px;
+    height: 99px;
+    top: 33px;
+    left: 383px;
+}
+
+.element .text-wrapper {
+    position: absolute;
+    top: 54px;
+    left: 622px;
+    font-family: "Avenir Next-Heavy", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 64px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.element .div {
+    position: absolute;
+    top: 149px;
+    left: 656px;
+    font-family: "Avenir Next-Bold", Helvetica;
+    font-weight: 700;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.element .button {
+    all: unset;
+    box-sizing: border-box;
+    position: absolute;
+    width: 148px;
+    height: 42px;
+    top: 801px;
+    left: 651px;
+}
+
+.element .go-home {
+    position: absolute;
+    top: 4px;
+    left: 43px;
+    font-family: "Helvetica-Regular", Helvetica;
+    font-weight: 400;
+    color: #000000;
+    font-size: 24px;
+    letter-spacing: 0;
+    line-height: normal;
+    white-space: nowrap;
+}
+
+.element .arrow {
+    position: absolute;
+    width: 35px;
+    height: 35px;
+    top: 0;
+    left: 0;
+}
+
+.element .group-2 {
+    position: absolute;
+    width: 25px;
+    height: 16px;
+    top: 10px;
+    left: 4px;
+}
+
+.element .rectangle {
+    position: absolute;
+    width: 141px;
+    height: 2px;
+    top: 40px;
+    left: 5px;
+    background-color: #000000;
+}

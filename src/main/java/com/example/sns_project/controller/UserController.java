@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.Collections;
+import java.util.List;
 
 @Controller
 @RequiredArgsConstructor
@@ -94,4 +94,25 @@ public class UserController {
         uService.deleteUser(user);
         return "redirect:/logout";
     }
+
+    // 사용자 검색
+    @GetMapping("/search")
+    public String searchUsers(@RequestParam(value = "query", required = false) String query, Model model) {
+        if (query != null && !query.isEmpty()) {
+            List<User> users = uService.searchUser(query);
+            model.addAttribute("users", users);
+            System.out.println(users);
+        } else {
+            model.addAttribute("users", Collections.emptyList());
+        }
+        model.addAttribute("query", query);
+
+        return "search";
+    }
+
+    // 다른 회원 페이지
+//    @GetMapping("/user/{userNum}")
+//    public String userPage(@PathVariable("userNum") Long userNum, Model model) {
+//    uService.ge
+//    }
 }

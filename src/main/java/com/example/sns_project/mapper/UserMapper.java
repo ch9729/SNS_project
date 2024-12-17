@@ -1,5 +1,6 @@
 package com.example.sns_project.mapper;
 
+import com.example.sns_project.dto.UserDTO;
 import com.example.sns_project.entity.User;
 import org.apache.ibatis.annotations.*;
 
@@ -35,4 +36,10 @@ public interface UserMapper {
     // 회원삭제
     @Delete("DELETE FROM user WHERE id = #{id}")
     int deleteUser(String id);
+
+    // 회원검색
+    @Select("SELECT * FROM user WHERE name LIKE CONCAT('%',#{query},'%') OR alias LIKE CONCAT('%',#{query},'%')")
+    List<User> selectUserLike(@Param("query") String query);
+
+    //Num값받아오기
 }
