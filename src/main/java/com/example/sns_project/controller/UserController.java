@@ -79,6 +79,7 @@ public class UserController {
                        BindingResult bindingResult,
                        Principal principal) {
         if(bindingResult.hasErrors()) {
+            System.out.println("에러");
             return "edit";
         }
         userDTO.setId(principal.getName());

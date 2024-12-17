@@ -60,6 +60,7 @@ public class UserService {
     // 회원 수정
     public void updateUser(UserDTO userDTO) {
         User user = toEntity(userDTO);
+        System.out.println("user = " +  user);
         uMapper.updateUser(user.getPassword(),user.getName(),user.getAlias());
     }
 

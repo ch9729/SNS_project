@@ -14,9 +14,9 @@
         <h1 class="title">TokTok</h1>
         <p class="subtitle">회원 정보를 수정하세요</p>
         <form class="signup-form" method="post" th:action="@{/edit}" th:object="${userDTO}">
-
+            <input type="hidden" placeholder="새 비밀번호" class="input" th:field="*{id}">
             <div>
-                <input type="password" placeholder="새 비밀번호" class="input" th:field="*{password}">
+                <input type="hidden" placeholder="새 비밀번호" class="input" th:field="*{password}">
             </div>
 
             <div>
@@ -31,15 +31,16 @@
             </div>
 
             <div class="button-group">
-                <form class="signup-form" method="post" th:action="@{/edit}" th:object="${userDTO}">
-                    <button type="submit" class="small-button update-button">수정</button>
-                </form>
+
+                    <button type="submit" class="small-button update-button" onclick="return confirm('정말로 수정하시겠습니까?')">수정</button>
+
                 <form th:action="@{/delete}" method="post" style="display: inline;">
-                    <button type="submit" class="small-button delete-button">탈퇴</button>
+                    <button type="submit" class="small-button delete-button" onclick="return confirm('정말로 탈퇴하시겠습니까?')">탈퇴</button>
                 </form>
             </div>
         </form>
     </div>
 </div>
+
 </body>
 </html>
