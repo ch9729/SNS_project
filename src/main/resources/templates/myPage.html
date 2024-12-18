@@ -26,7 +26,7 @@
 <main class="profile-section">
     <div class="profile-info">
         <div class="profile-image">
-            <img th:src="@{${user.profile}}" alt="프로필 사진">
+            <img th:src="@{'/' + ${user.profile}}" alt="프로필 사진">
         </div>
         <div class="profile-details">
             <h2><span th:text="${user.alias}"></span></h2>
