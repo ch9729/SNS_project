@@ -24,6 +24,10 @@
         SELECT b.id, b.title,u.alias AS authorAlias FROM board b JOIN user u ON b.user_num = u.userNum
     </select>
 
+    <select id="getBoard" resultType="com.example.sns_project.dto.BoardDTO">
+        SELECT
+    </select>
+
 
 
 </mapper>
