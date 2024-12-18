@@ -3,11 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>메인 페이지</title>
-    <!-- 구글폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-    <!-- 외부css링크 -->
-    <link rel="stylesheet" href="/css/main.css">
+    <title>게시글 작성</title>
+    <link rel="stylesheet" href="/css/boardAdd.css"> <!-- CSS 연결 -->
 </head>
 <body>
 <!-- 상단 메뉴 -->
@@ -22,20 +19,19 @@
     <a th:href="@{/logout}" class="logout-button">로그아웃</a>
 </header>
 
-<!-- 게시물 섹션 -->
+<!-- 게시글 작성 폼 -->
 <main class="post-container">
-    <div class="post">
-        <div class="post-header">
-            <img src="/profile/user.png" alt="User Icon" class="user-icon">
-            <span class="username" th:text="${username}">사용자 이름</span>
+    <form th:action="@{/board/add}" method="post" class="post-form">
+        <div class="form-group">
+            <input type="text" name="title" placeholder="제목" required>
         </div>
-        <img th:src="${postImage}" alt="Post Image" class="post-image">
-        <div class="post-content">
-            <span>❤️</span>
-            <span>💬</span>
-            <p th:text="${postContent}">내 고양이 어때?????</p>
+        <div class="form-group">
+            <textarea name="content" placeholder="게시판 내용을 작성하세요." rows="10" required></textarea>
         </div>
-    </div>
+        <div class="form-group">
+            <button type="submit" class="submit-btn">등록</button>
+        </div>
+    </form>
 </main>
 </body>
 </html>

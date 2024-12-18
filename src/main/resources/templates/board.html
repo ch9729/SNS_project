@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시판</title>
+    <link rel="stylesheet" href="/css/board.css"> <!-- CSS 연결 -->
+</head>
+<body>
+<!-- 상단 메뉴 -->
+<header class="header">
+    <a th:href="@{/main}"><img src="/img/main.png" alt="Logo" class="logo"></a>
+    <nav class="nav">
+        <a th:href="@{/search}"><img src="/img/head_look.png" alt="Search" class="icon"></a>
+        <a href="#"><img src="/img/head_message.png" alt="Message" class="icon"></a>
+        <a th:href="@{/board}"><img src="/img/head_board.png" alt="Board" class="icon"></a>
+        <a th:href="@{/myPage}"><img src="/img/head_user.png" alt="Profile" class="icon"></a>
+    </nav>
+    <a th:href="@{/logout}" class="logout-button">로그아웃</a>
+</header>
+
+<!-- 게시판 -->
+<main class="board-container">
+    <div class="board">
+        <form th:action="@{/board/search}" method="get" class="boardSearch-form">
+            <input type="text" placeholder="검색어를 입력하세요">
+            <button class="search-btn">검색</button>
+        </form>
+
+        <table class="board-table">
+            <tr>
+                <th>게시글 제목</th>
+                <th>작성자</th>
+            </tr>
+            <tr th:each="board : ${boards}">
+                <td th:text="${board.title}">게시글 제목</td>
+                <td th:text="${board.authorAlias}">작성자</td>
+            </tr>
+        </table>
+
+            <div class="add-btn-container">
+                <a th:href="@{/board/add}" class="add-btn">게시글 추가</a>
+            </div>
+    </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,99 @@
+body, h1, p {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* 헤더부분 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    width: 40px;
+}
+
+.nav .icon {
+    width: 30px;
+    margin: 0 10px;
+}
+
+.logout-button {
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #333;
+}
+
+/* 게시글 작성 폼 */
+.post-container {
+    display: flex;
+    justify-content: center; /* 수평 중앙 정렬 */
+    align-items: center; /* 수직 중앙 정렬 */
+    height: 100vh; /* 전체 화면 높이 */
+    background-color: #e1e1e1;
+    padding: 20px;
+}
+
+.post-form {
+    width: 100%;
+    max-width: 1000px; /* 폼 최대 너비를 500px로 제한 */
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.post-form input[type="text"],
+.post-form textarea {
+    display: block;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.post-form textarea {
+    resize: none;
+}
+
+.submit-btn {
+    display: inline-block;
+    width: 100%;
+    max-width: 90px;
+    padding: 10px;
+    background-color: #35cfcf;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.submit-btn:hover {
+    background-color: #2aa3a3;
+}
