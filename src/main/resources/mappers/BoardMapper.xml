@@ -24,9 +24,15 @@
         SELECT b.id, b.title,u.alias AS authorAlias FROM board b JOIN user u ON b.user_num = u.userNum
     </select>
 
+    <!-- 제목 또는 사용자명 입력 -->
     <select id="getBoard" resultType="com.example.sns_project.dto.BoardDTO">
-        SELECT
+        SELECT b.id, b.title, u.alias AS authorAlias FROM board b JOIN user u ON b.user_num = u.UserNum
+        WHERE b.title LIKE CONCAT('%', #{keyword}, '%') OR u.alias LIKE CONCAT('%', #{keyword}, '%')
     </select>
+
+    <!-- 삭제 -->
+    <delete id="deleteBoard"
+    <!-- 업데이트 -->
 
 
 

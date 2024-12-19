@@ -13,8 +13,10 @@
     <div class="signup-box">
         <h1 class="title">TokTok</h1>
         <p class="subtitle">회원 정보를 수정하세요</p>
+
         <form class="signup-form" method="post" th:action="@{/edit}" th:object="${userDTO}" enctype="multipart/form-data">
             <input type="hidden" class="input" th:field="*{id}">
+
             <div>
                 <input type="password" placeholder="새 비밀번호 (입력 시 변경됩니다)" class="input" th:field="*{password}">
             </div>
@@ -26,21 +28,32 @@
             <div>
                 <input type="text" placeholder="사용자명" class="input" th:field="*{alias}">
             </div>
-            <div>
-                <input type="file" name="file" accept="image/*">
+
+            <!-- 파일 선택 -->
+            <div class="file-input-group">
+                <label for="file-upload" class="file-label">파일 선택</label>
+                <input type="file" id="file-upload" name="file" accept="image/*" hidden>
+                <span id="file-name">선택된 파일 없음</span>
             </div>
 
             <div class="button-group">
-
-                    <button type="submit" class="small-button update-button" onclick="return confirm('정말로 수정하시겠습니까?')">수정</button>
-
+                <button type="submit" class="small-button update-button" onclick="return confirm('정말로 수정하시겠습니까?')">수정</button>
             </div>
         </form>
+
         <form th:action="@{/delete}" method="post" style="display: inline;">
             <button type="submit" class="small-button delete-button" onclick="return confirm('정말로 탈퇴하시겠습니까?')">탈퇴</button>
         </form>
     </div>
 </div>
 
+<script>
+    // 파일 선택 시 파일명 표시
+    document.getElementById('file-upload').addEventListener('change', function () {
+        const fileName = this.files[0] ? this.files[0].name : "선택된 파일 없음";
+        document.getElementById('file-name').textContent = fileName;
+    });
+</script>
 </body>
 </html>
+

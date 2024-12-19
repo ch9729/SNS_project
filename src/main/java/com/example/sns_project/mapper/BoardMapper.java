@@ -13,4 +13,6 @@ public interface BoardMapper {
     public void insertBoard(Board board);
 
     List<BoardDTO> getBoardList();
+
+    List<BoardDTO> getBoard(String keyword);
 }

@@ -21,4 +21,8 @@ public class BoardService {
     public List<BoardDTO> getAllBoards() {
         return bMapper.getBoardList();
     }
+
+    public List<BoardDTO> getBoardsByPage(String keyword) {
+        return bMapper.getBoard(keyword);
+    }
 }

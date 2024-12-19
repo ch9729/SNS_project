@@ -8,10 +8,7 @@ import com.example.sns_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -46,5 +43,11 @@ public class BoardController {
         return "redirect:/board";
     }
 
+    @GetMapping("/search")
+    public String searchBoard(@RequestParam("keyword")String keyword, Model model) {
+        List<BoardDTO> boardsByPage = bService.getBoardsByPage(keyword);
+        model.addAttribute("boards", boardsByPage);
+        return "board";
+    }
 
 }
