@@ -30,10 +30,15 @@
         WHERE b.title LIKE CONCAT('%', #{keyword}, '%') OR u.alias LIKE CONCAT('%', #{keyword}, '%')
     </select>
 
+    <!-- 상세 정보 -->
+    <select id="boardDetail" resultType="com.example.sns_project.dto.BoardDTO">
+        SELECT b.id, b.title, b.content,b.user_num AS authorId ,u.alias AS authorAlias FROM board b JOIN user u ON b.user_num = u.UserNum
+        WHERE b.id = #{id}
+    </select>
+
+
     <!-- 삭제 -->
-    <delete id="deleteBoard"
+
     <!-- 업데이트 -->
-
-
 
 </mapper>

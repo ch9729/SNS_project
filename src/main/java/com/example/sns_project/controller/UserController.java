@@ -1,8 +1,10 @@
 package com.example.sns_project.controller;
 
+import com.example.sns_project.dto.PostDTO;
 import com.example.sns_project.dto.UserDTO;
 import com.example.sns_project.entity.User;
 import com.example.sns_project.mapper.UserMapper;
+import com.example.sns_project.service.PostService;
 import com.example.sns_project.service.UserService;
 
 import jakarta.validation.Valid;
@@ -31,6 +33,7 @@ public class UserController {
 
     private final UserMapper uMapper;
     private final UserService uService;
+    private final PostService pService;
 
     @GetMapping("/")
     public String index(Model model) {
@@ -70,8 +73,10 @@ public class UserController {
         String userId = principal.getName();
 
         User user = uService.getUserById(userId);
+        List<PostDTO> posts = pService.getAllPost();
 
         model.addAttribute("user", user);
+        model.addAttribute("posts", posts);
         return "myPage";
     }
 

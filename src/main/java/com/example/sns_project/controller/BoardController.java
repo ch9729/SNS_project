@@ -1,10 +1,12 @@
 package com.example.sns_project.controller;
 
 import com.example.sns_project.dto.BoardDTO;
+import com.example.sns_project.dto.UserDTO;
 import com.example.sns_project.entity.Board;
 import com.example.sns_project.entity.User;
 import com.example.sns_project.service.BoardService;
 import com.example.sns_project.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -48,6 +50,21 @@ public class BoardController {
         List<BoardDTO> boardsByPage = bService.getBoardsByPage(keyword);
         model.addAttribute("boards", boardsByPage);
         return "board";
+    }
+
+    @GetMapping("/{id}")
+    public String boarddetail(@PathVariable Long id, Model model, Principal principal) {
+        BoardDTO boardById = bService.getBoardById(id);
+
+        String name = principal.getName();
+        System.out.println("Logged-in user: " + name);
+        System.out.println("Author ID: " + boardById.getAuthorId());
+        boolean equals = name.equals(boardById);
+        System.out.println("Is author: " + equals);
+
+        model.addAttribute("board", boardById);
+        model.addAttribute("equals", equals);
+        return "boardDetail";
     }
 
 }

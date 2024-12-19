@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>공지수정</title>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/boardDetail.css">
+</head>
+<body>
+    <header class="header">
+        <a th:href="@{/main}"><img src="/img/main.png" alt="Logo" class="logo"></a>
+        <nav class="nav">
+            <a th:href="@{/search}"><img src="/img/head_look.png" alt="Search" class="icon"></a>
+            <a href="#"><img src="/img/head_message.png" alt="Message" class="icon"></a>
+            <a th:href="@{/board}"><img src="/img/head_board.png" alt="Board" class="icon"></a>
+            <a th:href="@{/myPage}"><img src="/img/head_user.png" alt="Profile" class="icon"></a>
+        </nav>
+        <a th:href="@{/logout}" class="logout-button">로그아웃</a>
+    </header>
+    <main class="post-detail">
+        <div class="detail-container">
+            <div class="detail-header">
+
+                <span>글 제목: <strong th:text="${board.title}">제목</strong></span>
+                <span>작성자: <strong th:text="${board.authorAlias}">작성자</strong></span>
+            </div>
+            <!-- 글 내용을 바인딩 -->
+            <textarea class="detail-content" readonly th:text="${board.content}">글 내용</textarea>
+            <div th:if="${equals}" class="button-group">
+                <!-- 수정과 삭제 버튼 -->
+                <a th:href="@{/board/edit(id=${board.id})}" class="edit-btn">수정</a>
+                <form th:action="@{/board/delete}" method="post" style="display:inline;">
+                    <input type="hidden" name="id" th:value="${board.id}">
+                    <button type="submit" class="delete-btn" onclick="return confirm('정말 삭제하시겠습니까?')">삭제</button>
+                </form>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

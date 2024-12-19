@@ -2,7 +2,6 @@ package com.example.sns_project.mapper;
 
 import com.example.sns_project.dto.BoardDTO;
 import com.example.sns_project.entity.Board;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -15,4 +14,6 @@ public interface BoardMapper {
     List<BoardDTO> getBoardList();
 
     List<BoardDTO> getBoard(String keyword);
+
+    BoardDTO boardDetail(Long id);
 }

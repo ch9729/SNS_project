@@ -36,25 +36,15 @@
 
             <span class="followers">팔로우 <strong>2</strong></span>
         </div>
-        <button class="add-btn">
-            <a th:href="@{/upload}"></a>추가
-        </button>
+        <a th:href="@{/post/add}" class="add-btn">추가</a>
         <div class="options">
             <a th:href="@{/edit}"><img src="img/plus.png"></a>
         </div>
     </div>
 
     <div class="gallery">
-        <div class="photo">
-            <img src="cat_image.png" alt="고양이 사진">
-            <span class="delete">×</span>
-        </div>
-        <div class="photo">
-            <img src="cat_image.png" alt="고양이 사진">
-            <span class="delete">×</span>
-        </div>
-        <div class="photo">
-            <img src="cat_image.png" alt="고양이 사진">
+        <div class="photo" th:each="post : ${posts}">
+            <img th:src="@{${post.image}}" alt="게시물 이미지">
             <span class="delete">×</span>
         </div>
     </div>
