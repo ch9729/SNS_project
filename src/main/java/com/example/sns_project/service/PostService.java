@@ -43,4 +43,8 @@ public class PostService {
     public List<PostDTO> getAllPost() {
         return pMapper.allPost();
     }
+
+    public void deletePost(Long id) {
+        pMapper.deletePost(id);
+    }
 }

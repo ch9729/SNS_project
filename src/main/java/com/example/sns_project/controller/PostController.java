@@ -7,10 +7,7 @@ import com.example.sns_project.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -36,6 +33,13 @@ public class PostController {
         post.setUserNum(userById.getUserNum());
 
         pService.addPost(post,file);
+        return "redirect:/myPage";
+    }
+
+    @PostMapping("/delete")
+    public void deletePost(@RequestParam Long id, Principal principal) {
+        String userId = principal.getName();
+        pService.postById(id);
         return "redirect:/myPage";
     }
 

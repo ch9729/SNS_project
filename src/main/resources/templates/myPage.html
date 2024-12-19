@@ -45,7 +45,9 @@
     <div class="gallery">
         <div class="photo" th:each="post : ${posts}">
             <img th:src="@{${post.image}}" alt="게시물 이미지">
-            <span class="delete">×</span>
+            <form th:action="@{/post/delete}">
+                <span class="delete">×</span>
+            </form>
         </div>
     </div>
 </main>
