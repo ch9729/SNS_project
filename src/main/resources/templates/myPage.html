@@ -44,9 +44,12 @@
 
     <div class="gallery">
         <div class="photo" th:each="post : ${posts}">
-            <img th:src="@{${post.image}}" alt="게시물 이미지">
-            <form th:action="@{/post/delete}">
-                <span class="delete">×</span>
+            <a th:href="@{/post/{id}(id=${post.id})}">
+                <img th:src="@{${post.image}}" alt="게시물 이미지">
+            </a>
+            <form th:action="@{/post/delete}" method="post">
+                <input type="hidden" name="id" th:value="${post.id}"/>
+                <button type="submit" class="delete" onclick="return confirm('정말 삭제하시겠습니까?')">×</button>
             </form>
         </div>
     </div>

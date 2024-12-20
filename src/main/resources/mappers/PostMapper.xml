@@ -13,8 +13,13 @@
     </delete>
 
     <select id="postById">
-        SELECT * FROM post p JOIN user u ON p.userNum = u.userNum WHERE p.id = #{id}
+        SELECT p.id, p.title, p.image, p.user_num AS userNum, u.alias AS userAlias, u.profile AS userProfile
+        FROM post p JOIN user u ON p.user_num = u.userNum
+        WHERE p.id = #{id}
     </select>
+
+<!--        SELECT c.id, c.content, c.post_id AS postId, c.author FROM comment c WHERE c.post_id = #{id}-->
+
 
     <select id="allPost">
         SELECT p.id, p.title, p.image, p.user_num AS userNum, u.alias AS userAlias, u.profile AS userProfile

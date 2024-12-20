@@ -1,5 +1,6 @@
 package com.example.sns_project.controller;
 
+import com.example.sns_project.dto.PostDTO;
 import com.example.sns_project.entity.Post;
 import com.example.sns_project.entity.User;
 import com.example.sns_project.service.PostService;
@@ -37,10 +38,16 @@ public class PostController {
     }
 
     @PostMapping("/delete")
-    public void deletePost(@RequestParam Long id, Principal principal) {
-        String userId = principal.getName();
-        pService.postById(id);
+    public String deletePost(@RequestParam("id") Long id, Principal principal) {
+        pService.deletePost(id);
         return "redirect:/myPage";
+    }
+
+    @GetMapping("/{id}")
+    public String postDetail(@PathVariable Long id, Model model) {
+        PostDTO post = pService.getById(id);
+        model.addAttribute("post", post);
+        return "postDetail";
     }
 
 

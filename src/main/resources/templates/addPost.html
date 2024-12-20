@@ -1,35 +1,78 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="ko" xmlns:th="http://www.thymeleaf.org">-->
+<!--  <head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
+<!--    <title>마이페이지</title>-->
+<!--    &lt;!&ndash; 구글폰트 &ndash;&gt;-->
+<!--    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">-->
+<!--    &lt;!&ndash; 외부css링크 &ndash;&gt;-->
+<!--    <link rel="stylesheet" href="/css/addPost.css">-->
+<!--  </head>-->
+<!--  <body>-->
+<!--  <header class="header">-->
+<!--    <a th:href="@{/main}"><img src="/img/main.png" alt="Logo" class="logo"></a>-->
+<!--    <nav class="nav">-->
+<!--      <a href="#"><img src="/img/head_look.png" alt="Search" class="icon"></a>-->
+<!--      <a href="#"><img src="/img/head_message.png" alt="Message" class="icon"></a>-->
+<!--      <a href="#"><img src="/img/head_board.png" alt="Board" class="icon"></a>-->
+<!--      <a th:href="@{/myPage}"><img src="/img/head_user.png" alt="Profile" class="icon"></a>-->
+<!--    </nav>-->
+<!--    <a th:href="@{/logout}" class="logout-button">로그아웃</a>-->
+<!--  </header>-->
+
+<!--  <h1>게시물 추가</h1>-->
+<!--  <form th:action="@{/post/add}" method="post" enctype="multipart/form-data">-->
+<!--    <label for="title">제목:</label>-->
+<!--    <input type="text" id="title" name="title" required><br><br>-->
+
+<!--    <label for="file">이미지 업로드:</label>-->
+<!--    <input type="file" id="file" name="file" accept="image/*" required><br><br>-->
+
+<!--    <button type="submit">추가</button>-->
+<!--  </form>-->
+<!--  </body>-->
+<!--</html>-->
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>마이페이지</title>
-    <!-- 구글폰트 -->
-    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
-    <!-- 외부css링크 -->
-    <link rel="stylesheet" href="/css/upload.css">
-  </head>
-  <body>
-  <header class="header">
-    <a th:href="@{/main}"><img src="/img/main.png" alt="Logo" class="logo"></a>
-    <nav class="nav">
-      <a href="#"><img src="/img/head_look.png" alt="Search" class="icon"></a>
-      <a href="#"><img src="/img/head_message.png" alt="Message" class="icon"></a>
-      <a href="#"><img src="/img/head_board.png" alt="Board" class="icon"></a>
-      <a th:href="@{/myPage}"><img src="/img/head_user.png" alt="Profile" class="icon"></a>
-    </nav>
-    <a th:href="@{/logout}" class="logout-button">로그아웃</a>
-  </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>게시물 추가</title>
+  <!-- 구글폰트 -->
+  <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+  <!-- 외부 CSS -->
+  <link rel="stylesheet" href="/css/addPost.css">
+</head>
+<body>
+<div class="upload-container">
+  <div class="upload-box">
+    <h1 class="title">게시물 추가</h1>
 
-  <h1>게시물 추가</h1>
-  <form th:action="@{/post/add}" method="post" enctype="multipart/form-data">
-    <label for="title">제목:</label>
-    <input type="text" id="title" name="title" required><br><br>
+    <form th:action="@{/post/add}" method="post" enctype="multipart/form-data">
+      <div>
+        <input type="text" placeholder="게시 제목을 작성해주세요." class="input" id="title" name="title" required>
+      </div>
 
-    <label for="file">이미지 업로드:</label>
-    <input type="file" id="file" name="file" accept="image/*" required><br><br>
+      <div class="file-input-group">
+        <label for="file-upload" class="file-label">이미지 업로드</label>
+        <input type="file" id="file-upload" name="file" accept="image/*" hidden required>
+        <span id="file-name">선택된 파일 없음</span>
+      </div>
 
-    <button type="submit">추가</button>
-  </form>
-  </body>
+      <div class="button-group">
+        <button type="submit" class="small-button upload-button">추가</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script>
+  // 파일 선택 시 파일명 표시
+  document.getElementById('file-upload').addEventListener('change', function () {
+    const fileName = this.files[0] ? this.files[0].name : "선택된 파일 없음";
+    document.getElementById('file-name').textContent = fileName;
+  });
+</script>
+</body>
 </html>

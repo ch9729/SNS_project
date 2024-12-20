@@ -4,24 +4,16 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class PostDTO {
+public class LikeDTO {
 
     private Long id;
 
-    private String title;
-
-    private String image;
-
     private Long userNum;
 
-    private String userAlias;
+    private Long postNum;
 
-    private String userProfile;
-
-    private List<CommentDTO> comments;
+    private String likeImage;
 }

@@ -1,7 +1,9 @@
 package com.example.sns_project.service;
 
+import com.example.sns_project.dto.CommentDTO;
 import com.example.sns_project.dto.PostDTO;
 import com.example.sns_project.entity.Post;
+import com.example.sns_project.mapper.CommentMapper;
 import com.example.sns_project.mapper.PostMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,6 +19,7 @@ import java.util.UUID;
 public class PostService {
 
     private final PostMapper pMapper;
+    private final CommentMapper cMapper;
 
     public void addPost(Post post, MultipartFile file) throws IOException {
         if(!file.isEmpty()) {
@@ -46,5 +49,12 @@ public class PostService {
 
     public void deletePost(Long id) {
         pMapper.deletePost(id);
+    }
+
+    public PostDTO getById(Long id) {
+        PostDTO post =  pMapper.postById(id);
+        List<CommentDTO> comments = cMapper.commentByPostId(id);
+        post.setComments(comments);
+        return post;
     }
 }

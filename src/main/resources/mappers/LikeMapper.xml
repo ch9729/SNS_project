@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTO Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.sns_project.mapper.LikeMapper">
+
+    <insert id="insertLike">
+        INSERT INTO likes (user_num, post_num, like_image) VALUES (#{userNUM}, #{postNum}, #{likeImage});
+    </insert>
+
+    <delete id="deleteLike">
+        DELETE FROM likes WHERE user_num = #{userNum} AND post_num = #{postNum};
+    </delete>
+
+<!--   좋아요 개수 확인 -->
+    <select id="countLikesByPost">
+        SELECT COUNT(*) FROM likes WHERE post_num = #{postNum};
+    </select>
+
+<!--    사용자가 게시물에 좋아요 눌렀는지 확인-->
+    <select id="exitsUserPost">
+        SELECT EXISTS (SELECT 1 FROM likes WHERE user_num = #{userNum} AND post_num = #{postNum});
+    </select>
+</mapper>
