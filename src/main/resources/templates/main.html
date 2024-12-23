@@ -24,16 +24,14 @@
 
 <!-- 게시물 섹션 -->
 <main class="post-container">
-    <div class="post">
+    <div class="post" th:each="post : ${posts}">
         <div class="post-header">
-            <img src="/profile/user.png" alt="User Icon" class="user-icon">
-            <span class="username" th:text="${username}">사용자 이름</span>
+            <img th:src="@{'/' + ${post.userProfile}}" alt="User Icon" class="user-icon">
+            <span class="username" th:text="${post.userAlias}"></span>
         </div>
-        <img th:src="${postImage}" alt="Post Image" class="post-image">
+        <img th:src="@{${post.image}}" alt="Post Image" class="post-image">
         <div class="post-content">
-            <span>❤️</span>
-            <span>💬</span>
-            <p th:text="${postContent}">내 고양이 어때?????</p>
+            <p th:text="${post.title}"></p>
         </div>
     </div>
 </main>

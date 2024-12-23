@@ -13,6 +13,9 @@ public interface UserMapper {
     @Select("SELECT * FROM user")
     public List<User> selectUsers();
 
+    @Select("SELECT userNum FROM user WHERE id = #{name}")
+    public Long getUserNumByUsername(String name);
+
     // userNum을 통해 1명에 대한 회원 조회
     @Select("SELECT * FROM user WHERE userNum=#{userNum}")
     public User getUserByNum(Long userNum);

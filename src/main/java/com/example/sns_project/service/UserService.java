@@ -66,47 +66,6 @@ public class UserService {
         return uMapper.findById(id);
     }
 
-    // 회원 수정
-//    public void updateUser(UserDTO userDTO, MultipartFile file) {
-//        User existingUser = uMapper.findById(userDTO.getId());
-//
-//        // 비밀번호가 입력된 경우 암호화 처리, 입력되지 않은 경우 기존 비밀번호 유지
-//        String updatedPassword = userDTO.getPassword();
-//        if (updatedPassword != null && !updatedPassword.isEmpty()) {
-//            updatedPassword = passwordEncoder.encode(updatedPassword);
-//        } else {
-//            updatedPassword = existingUser.getPassword();
-//        }
-//
-//        //이미지
-//        String profilePath = existingUser.getProfile(); // 기본값 유지
-//        String projectDir = System.getProperty("user.dir");
-//        String uploadDir = projectDir + "uploads/profile/";
-//
-//        if (file != null && !file.isEmpty()) {
-//            String fileName = "profile_" + userDTO.getId() + ".png";
-//            File saveDir = new File(uploadDir);
-//            try {
-//                if(!saveDir.exists()) {
-//                    saveDir.mkdirs();
-//                }
-//                    File saveFile = new File(saveDir, fileName);
-//                    file.transferTo(saveFile);
-//
-//                    profilePath = "profile/" + fileName;
-//                } catch (IOException e) {
-//                    throw new RuntimeException("파일 저장 실패", e);
-//            }
-//        }
-//
-//        uMapper.updateUser(
-//                userDTO.getId(),
-//                updatedPassword,
-//                userDTO.getName(),
-//                userDTO.getAlias(),
-//                profilePath
-//        );
-//    }
     public void updateUser(UserDTO userDTO, MultipartFile file) {
         User existingUser = uMapper.findById(userDTO.getId());
 
@@ -167,6 +126,18 @@ public class UserService {
     // 회원 검색
     public List<User> searchUser(String query) {
         return uMapper.selectUserLike(query);
+    }
+
+    public List<User> getAllUsers() {
+        return uMapper.selectUsers();
+    }
+
+    public User getUserByNum(Long userNum) {
+        return uMapper.getUserByNum(userNum);
+    }
+
+    public Long getUserNumByUsername(String username) {
+        return uMapper.getUserNumByUsername(username);
     }
 
 }

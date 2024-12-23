@@ -64,19 +64,26 @@ public class UserController {
     }
 
     @GetMapping("/main")
-    public String main() {
+    public String main(Model model) {
+        List<PostDTO> posts = pService.getAllPost();
+        model.addAttribute("posts", posts);
         return "main";
     }
 
     @GetMapping("/myPage")
     public String myPage(Principal principal, Model model) {
-        String userId = principal.getName();
-
-        User user = uService.getUserById(userId);
-        List<PostDTO> posts = pService.getAllPost();
-
-        model.addAttribute("user", user);
+        String username = principal.getName();
+        System.out.println("username: " + username);
+        Long userNum = uService.getUserNumByUsername(username);
+        System.out.println("userNum: " + userNum);
+        List<PostDTO> posts = pService.getPostsByUser(userNum);
+        System.out.println("posts: " + posts);
         model.addAttribute("posts", posts);
+
+        User user = uService.getUserByNum(userNum);
+        System.out.println("user: " + user);
+        model.addAttribute("user", user);
+
         return "myPage";
     }
 
@@ -102,8 +109,6 @@ public class UserController {
 
         userDTO.setId(principal.getName());
 
-
-
         uService.updateUser(userDTO, file);
 
         return "redirect:/myPage";
@@ -119,16 +124,29 @@ public class UserController {
     // 사용자 검색
     @GetMapping("/search")
     public String searchUsers(@RequestParam(value = "query", required = false) String query, Model model) {
-        if (query != null && !query.isEmpty()) {
-            List<User> users = uService.searchUser(query);
-            model.addAttribute("users", users);
-            System.out.println(users);
+
+        List<User> users;
+        if(query == null || query.isEmpty()) {
+            users = uService.getAllUsers();
         } else {
-            model.addAttribute("users", Collections.emptyList());
+            users = uService.searchUser(query);
         }
+        model.addAttribute("users", users);
         model.addAttribute("query", query);
 
         return "search";
+    }
+
+    @GetMapping("/user/{userNum}")
+    public String getUserPage(@PathVariable("userNum") Long userNum, Model model) {
+        User user = uService.getUserByNum(userNum);
+
+        System.out.println("userNum = " + userNum);
+        model.addAttribute("user", user);
+
+        List<PostDTO> posts = pService.getPostsByUser(userNum);
+        model.addAttribute("posts", posts);
+        return "userPage";
     }
 
 }

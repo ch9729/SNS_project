@@ -57,4 +57,8 @@ public class PostService {
         post.setComments(comments);
         return post;
     }
+
+    public List<PostDTO> getPostsByUser(Long userNum) {
+        return pMapper.postsByUserNum(userNum);
+    }
 }
