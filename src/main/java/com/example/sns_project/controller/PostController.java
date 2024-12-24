@@ -39,7 +39,7 @@ public class PostController {
     }
 
     @PostMapping("/delete")
-    public String deletePost(@RequestParam("id") Long id, Principal principal) {
+    public String deletePost(@RequestParam("id") Long id) {
         pService.deletePost(id);
         return "redirect:/myPage";
     }
