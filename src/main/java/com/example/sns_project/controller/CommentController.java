@@ -35,6 +35,6 @@ public class CommentController {
     public String getCommentsByPostId(@PathVariable Long postId, Model model) {
         List<CommentDTO> comments = cService.getAllComment(postId);
         model.addAttribute("comments", comments);
-        return "postDetail"; // 댓글이 표시될 게시물 상세페이지
+        return "postDetail";
     }
 }

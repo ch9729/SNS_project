@@ -25,14 +25,20 @@
 <!-- 게시물 섹션 -->
 <main class="post-container">
     <div class="post" th:each="post : ${posts}">
+
         <div class="post-header">
-            <img th:src="@{'/' + ${post.userProfile}}" alt="User Icon" class="user-icon">
-            <span class="username" th:text="${post.userAlias}"></span>
+            <a th:href="@{'/user/' + ${post.userNum}}">
+                <img th:src="@{'/' + ${post.userProfile}}" alt="User Icon" class="user-icon">
+                <span class="username" th:text="${post.userAlias}"></span>
+            </a>
         </div>
-        <img th:src="@{${post.image}}" alt="Post Image" class="post-image">
-        <div class="post-content">
-            <p th:text="${post.title}"></p>
-        </div>
+
+        <a th:href="@{/post/{id}(id=${post.id})}">
+            <img th:src="@{${post.image}}" alt="Post Image" class="post-image">
+            <div class="post-content">
+                <p th:text="${post.title}"></p>
+            </div>
+        </a>
     </div>
 </main>
 </body>

@@ -47,21 +47,15 @@ public class PostController {
         return "redirect:/myPage";
     }
 
-//    @GetMapping("/{id}")
-//    public String postDetail(@PathVariable Long id, Model model) {
-//        PostDTO post = pService.getById(id);
-//        model.addAttribute("post", post);
-//        return "postDetail";
-//    }
-@GetMapping("/{id}")
-public String getPostDetail(@PathVariable Long id, Model model) {
-    PostDTO post = pService.getById(id);
-    for (CommentDTO comment : post.getComments()) {
-        String alias = cService.getAliasByComment(comment.getId());
-        comment.setAuthor(alias);  // ID 대신 alias로 설정
+    @GetMapping("/{id}")
+    public String getPostDetail(@PathVariable Long id, Model model) {
+        PostDTO post = pService.getById(id);
+        for (CommentDTO comment : post.getComments()) {
+            String alias = cService.getAliasByComment(comment.getId());
+            comment.setAuthor(alias);
+        }
+        model.addAttribute("post", post);
+        return "postDetail";
     }
-    model.addAttribute("post", post);
-    return "postDetail";
-}
 
 }
