@@ -1,8 +1,10 @@
 package com.example.sns_project.controller;
 
+import com.example.sns_project.dto.CommentDTO;
 import com.example.sns_project.dto.PostDTO;
 import com.example.sns_project.entity.Post;
 import com.example.sns_project.entity.User;
+import com.example.sns_project.service.CommentService;
 import com.example.sns_project.service.PostService;
 import com.example.sns_project.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -22,6 +24,7 @@ public class PostController {
 
     private final PostService pService;
     private final UserService uService;
+    private final CommentService cService;
 
     @GetMapping("/add")
     public String addPost(Model model) {
@@ -44,11 +47,21 @@ public class PostController {
         return "redirect:/myPage";
     }
 
-    @GetMapping("/{id}")
-    public String postDetail(@PathVariable Long id, Model model) {
-        PostDTO post = pService.getById(id);
-        model.addAttribute("post", post);
-        return "postDetail";
+//    @GetMapping("/{id}")
+//    public String postDetail(@PathVariable Long id, Model model) {
+//        PostDTO post = pService.getById(id);
+//        model.addAttribute("post", post);
+//        return "postDetail";
+//    }
+@GetMapping("/{id}")
+public String getPostDetail(@PathVariable Long id, Model model) {
+    PostDTO post = pService.getById(id);
+    for (CommentDTO comment : post.getComments()) {
+        String alias = cService.getAliasByComment(comment.getId());
+        comment.setAuthor(alias);  // ID 대신 alias로 설정
     }
+    model.addAttribute("post", post);
+    return "postDetail";
+}
 
 }

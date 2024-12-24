@@ -15,4 +15,7 @@
         DELETE FROM comment WHERE id = #{id}
     </delete>
 
+    <select id="getAliasByComment" resultType="string">
+        SELECT u.alias FROM comment c JOIN user u ON c.author = u.id WHERE c.id = #{id};
+    </select>
 </mapper>

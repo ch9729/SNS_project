@@ -13,4 +13,6 @@ public interface CommentMapper {
     List<CommentDTO> commentByPostId(Long postId);
 
     void deleteComment(Long id);
+
+    String getAliasByComment(Long id);
 }

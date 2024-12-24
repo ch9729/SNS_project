@@ -73,15 +73,15 @@ public class UserController {
     @GetMapping("/myPage")
     public String myPage(Principal principal, Model model) {
         String username = principal.getName();
-        System.out.println("username: " + username);
+
         Long userNum = uService.getUserNumByUsername(username);
-        System.out.println("userNum: " + userNum);
+
         List<PostDTO> posts = pService.getPostsByUser(userNum);
-        System.out.println("posts: " + posts);
+
         model.addAttribute("posts", posts);
 
         User user = uService.getUserByNum(userNum);
-        System.out.println("user: " + user);
+
         model.addAttribute("user", user);
 
         return "myPage";

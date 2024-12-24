@@ -20,7 +20,7 @@ public class CommentController {
     private final CommentService cService;
 
     @PostMapping("/comment/add")
-    public String addComment(CommentDTO commentDTO, Principal principal) {
+    public String addComment(CommentDTO commentDTO,Principal principal) {
         commentDTO.setAuthor(principal.getName());
 
         System.out.println("Content: " + commentDTO.getContent());

@@ -19,4 +19,6 @@ public interface PostMapper {
     PostDTO postById(Long id);
 
     List<PostDTO> postsByUserNum(Long userNum);
+
+    void getPostById(Long id);
 }

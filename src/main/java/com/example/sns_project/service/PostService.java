@@ -55,6 +55,11 @@ public class PostService {
         PostDTO post =  pMapper.postById(id);
         List<CommentDTO> comments = cMapper.commentByPostId(id);
         post.setComments(comments);
+
+        for(CommentDTO comment : comments) {
+            String alias = cMapper.getAliasByComment(comment.getId());
+            comment.setAuthor(alias);
+        }
         return post;
     }
 

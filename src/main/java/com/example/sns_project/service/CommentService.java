@@ -24,4 +24,8 @@ public class CommentService {
     public void deleteComment(Long id) {
         cMapper.deleteComment(id);
     }
+
+    public String getAliasByComment(Long id) {
+        return cMapper.getAliasByComment(id);
+    }
 }
