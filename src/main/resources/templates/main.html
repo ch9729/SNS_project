@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
     <!-- 외부css링크 -->
     <link rel="stylesheet" href="/css/main.css">
+    <script type="text/javascript" src="/js/main.js"></script>
 </head>
 <body>
 <!-- 상단 메뉴 -->
@@ -36,9 +37,24 @@
         <a th:href="@{/post/{id}(id=${post.id})}">
             <img th:src="@{${post.image}}" alt="Post Image" class="post-image">
             <div class="post-content">
+                <div class="like-button-container">
+
+                </div>
                 <p th:text="${post.title}"></p>
             </div>
         </a>
+
+
+
+        <div class="like-button-container">
+            <button class="like-button"
+                    th:data-post-id="${post.id}"
+                    th:data-user-id="${user.userNum}">
+                <img src="/img/heart.png" alt="Like" class="like-icon">
+            </button>
+        </div>
+
+
     </div>
 </main>
 </body>

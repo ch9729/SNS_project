@@ -14,6 +14,4 @@ public class Like {
     private Long userNum;
 
     private Long postNum;
-
-    private String likeImage;
 }

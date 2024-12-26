@@ -31,9 +31,7 @@
                                 <span th:text="${comment.author}"></span>: <span th:text="${comment.content}"></span>
                             </p>
                         </div>
-                        <div class="like-section">
-                            <button>❤</button>
-                        </div>
+            
             <form th:action="@{/comment/add}" method="post">
                 <input type="text" name="content" placeholder="댓글을 입력하세요">
                 <input type="hidden" name="postId" th:value="${post.id}">
@@ -42,5 +40,6 @@
         </div>
     </div>
 </main>
+
 </body>
 </html>

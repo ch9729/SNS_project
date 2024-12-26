@@ -63,12 +63,23 @@ public class UserController {
         return "redirect:/myPage";
     }
 
+//    @GetMapping("/main")
+//    public String main(Model model) {
+//        List<PostDTO> posts = pService.getAllPost();
+//        model.addAttribute("posts", posts);
+//        return "main";
+//    }
+
     @GetMapping("/main")
-    public String main(Model model) {
-        List<PostDTO> posts = pService.getAllPost();
-        model.addAttribute("posts", posts);
+    public String main(Model model, Principal principal) {
+        String username = principal.getName();
+        User user = uService.getUserById(username);
+
+        model.addAttribute("user", user); // userNum 사용 가능
+        model.addAttribute("posts", pService.getAllPost());
         return "main";
     }
+
 
     @GetMapping("/myPage")
     public String myPage(Principal principal, Model model) {

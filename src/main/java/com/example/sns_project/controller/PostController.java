@@ -5,6 +5,7 @@ import com.example.sns_project.dto.PostDTO;
 import com.example.sns_project.entity.Post;
 import com.example.sns_project.entity.User;
 import com.example.sns_project.service.CommentService;
+import com.example.sns_project.service.LikesService;
 import com.example.sns_project.service.PostService;
 import com.example.sns_project.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,7 @@ public class PostController {
     private final PostService pService;
     private final UserService uService;
     private final CommentService cService;
+    private final LikesService lService;
 
     @GetMapping("/add")
     public String addPost(Model model) {

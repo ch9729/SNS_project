@@ -24,4 +24,8 @@ public class PostDTO {
     private String userProfile;
 
     private List<CommentDTO> comments;
+
+    private int likes;
+
+    private boolean isLiked;
 }

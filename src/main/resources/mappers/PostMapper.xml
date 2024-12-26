@@ -30,4 +30,16 @@
     <select id="getPostById">
         SELECT * FROM post WHERE id = #{id}
     </select>
+
+    <select id="getLikes">
+        SELECT likes FROM post WHERE id = #{id}
+    </select>
+
+    <update id="increaseLikes">
+        UPDATE post SET likes = likes + 1 WHERE id = #{id}
+    </update>
+
+    <update id="decreaseLikes">
+        UPDATE post SET likes = likes - 1 WHERE id = #{id}
+    </update>
 </mapper>
